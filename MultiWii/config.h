@@ -122,7 +122,7 @@
       //#define Bobs_10DOF_BMP_V1 // BobsQuads 10DOF V1 with ITG3200, BMA180, HMC5883L & BMP180 - BMP180 is software compatible with BMP085
       //#define FLYDUINO_MPU
       #define CRIUS_AIO_PRO_V1
-      
+
     /***************************    independent sensors    ********************************/
       /* leave it commented if you already checked a specific board above */
       /* I2C gyroscope */
@@ -237,9 +237,9 @@
 
     //#define FLAPPERONS    AUX4          // Mix Flaps with Aileroins.
     #define FLAPPERON_EP   { 1500, 1700 } // Endpooints for flaps on a 2 way switch else set {1020,2000} and program in radio.
-    //#define FLAPPERON_EP   { 1200, 1500 } // Or Flapperons up for CrowMix 
+    //#define FLAPPERON_EP   { 1200, 1500 } // Or Flapperons up for CrowMix
     #define FLAPPERON_INVERT { 1, -1 }    // Change direction om flapperons { Wing1, Wing2 }
-    
+
     //#define FLAPS         AUX4          // Traditional Flaps on A2 invert with SERVO_DIRECTION servo[2).
     #define FLAP_EP      { 1500, 1900 }   // Endpooints for flaps on a 2 way switch else set {1020,2000} and program in radio.
 
@@ -265,13 +265,13 @@
     /* Servo mixing for heli 120 Use 1/10 fractions (ex.5 = 5/10 = 1/2)
                          {Coll,Nick,Roll} */
     #define SERVO_NICK   { +10, -10, -0 }
-    #define SERVO_LEFT   { +10, +5, +10 } 
-    #define SERVO_RIGHT  { +10, +5, -10 } 
+    #define SERVO_LEFT   { +10, +5, +10 }
+    #define SERVO_RIGHT  { +10, +5, -10 }
 
-    /* Servo mixing for heli 90 
+    /* Servo mixing for heli 90
                             {Coll,Nick,Roll} */
     #define SERVO_DIRECTIONS { +1, -1, -1 } // -1 will invert servo
-	
+
     /* Limit Maximum controll for Roll & Nick  in 0-100% */
     #define CONTROLL_RANGE   { 100, 100 }      //  { ROLL,PITCH }
 
@@ -283,8 +283,8 @@
     /* Change to -1 to reverse servomovement per axis
        Servosettings for SingleCopter */
     #define SINGLECOPTRER_YAW   {1, 1, 1, 1} // Left, Right,Front,Rear
-    #define SINGLECOPTRER_SERVO {1,-1, 1,-1} // Pitch,Pitch,Roll, Roll    
-  
+    #define SINGLECOPTRER_SERVO {1,-1, 1,-1} // Pitch,Pitch,Roll, Roll
+
     /* Servosettings for DualCopter */
      #define DUALCOPTER_SERVO {1,1} //Pitch,Roll
     /* Use  SERVO_OFFSET and SERVO_RATES in Heli and Airplane section for centering and endpoints */
@@ -371,7 +371,7 @@
       //#define A32U4ALLPINS
 
     /**********************************    PWM Setup     **********************************/
-      /* activate all 6 hardware PWM outputs Motor 5 = D11 and 6 = D13. 
+      /* activate all 6 hardware PWM outputs Motor 5 = D11 and 6 = D13.
          note: not possible on the sparkfun promicro (pin 11 & 13 are not broken out there)
          if activated:
          Motor 1-6 = 10-bit hardware PWM
@@ -540,7 +540,7 @@
 
     /* defines the neutral zone of throttle stick during altitude hold, default setting is
        +/-20 uncommend and change the value below if you want to change it. */
-    //#define ALT_HOLD_THROTTLE_NEUTRAL_ZONE 20 
+    //#define ALT_HOLD_THROTTLE_NEUTRAL_ZONE 20
 
 
   /**************************************************************************************/
@@ -553,16 +553,17 @@
        note: only the RX PIN is used, the GPS is not configured by multiwii
        the GPS must be configured to output GGA and RMC NMEA sentences (which is generally the default conf for most GPS devices)
        at least 5Hz update rate. uncomment the first line to select the GPS serial port of the arduino */
-    //#define GPS_SERIAL 2 // should be 2 for flyduino v2. It's the serial port number on arduino MEGA
-    #define GPS_BAUD   115200
-    
+    #define GPS_SERIAL 2 // should be 2 for flyduino v2. It's the serial port number on arduino MEGA
+    #define GPS_BAUD   57600
+    #define UBLOX
+    #define GPS_LEAD_FILTER
     //#define GPS_PROMINI_SERIAL    57600 // Will Autosense if GPS is connected when ardu boots
-   
+
     /* I2C GPS device made with an independant arduino + GPS device
        including some navigation functions
-       contribution from EOSBandi   http://code.google.com/p/i2c-gps-nav/ 
+       contribution from EOSBandi   http://code.google.com/p/i2c-gps-nav/
        You have to use at least I2CGpsNav code r33 */
-     #define I2C_GPS
+     // #define I2C_GPS
 
     /* I2C GPS device made with an indeedent ATTiny[24]313 + GPS device and
        optional sonar device.    https://github.com/wertarbyte/tiny-gps/ */
@@ -579,22 +580,22 @@
 
     //#define USE_MSP_WP           		//Enables the MSP_WP command, which is used by WinGUI to display and log Home and Poshold positions
 						//Uncomment it if you are planning to use WinGUI - Will cost +208 bytes of Flash
-	
+
     //#define DONT_RESET_HOME_AT_ARM             // HOME position is reset at every arm, uncomment it to prohibit it (you can set home position with GyroCalibration)
 
     /* GPS navigation can control the heading */
-    
+
     #define NAV_CONTROLS_HEADING       true      // copter faces toward the navigation point, maghold must be enabled for it
-    #define NAV_TAIL_FIRST             false     // true - copter comes in with tail first 
+    #define NAV_TAIL_FIRST             false     // true - copter comes in with tail first
     #define NAV_SET_TAKEOFF_HEADING    true      // true - when copter arrives to home position it rotates it's head to takeoff direction
-    
-    
+
+
     /* Get your magnetic decliniation from here : http://magnetic-declination.com/
        Convert the degree+minutes into decimal degree by ==> degree+minutes*(1/60)
        Note the sign on declination it could be negative or positive (WEST or EAST) */
     //#define MAG_DECLINIATION  3.96f              //For Budapest Hungary.
     #define MAG_DECLINIATION  0.0f
-    
+
     #define GPS_FILTERING                        // add a 5 element moving average filter to GPS coordinates, helps eliminate gps noise but adds latency comment out to disable
     #define GPS_LOW_SPEED_D_FILTER               // below .5m/s speed ignore D term for POSHOLD_RATE, theoretically this also removed D term induced noise commnent out to disable
     #define GPS_WP_RADIUS              200       // if we are within this distance to a waypoint then we consider it reached (distance is in cm)
@@ -684,8 +685,8 @@
     //#define LCD_TELEMETRY_AUTO "123452679" // pages 1 to 7 in ascending order
     //#define LCD_TELEMETRY_AUTO  "212232425262729" // strong emphasis on page 2
 
-    /* same as above, but manual stepping sequence; requires 
-       stick input (throttle=low & roll=right & pitch=forward) to 
+    /* same as above, but manual stepping sequence; requires
+       stick input (throttle=low & roll=right & pitch=forward) to
        step through each defined telemetry page */
     //#define LCD_TELEMETRY_STEP "0123456789" // must begin with 0
 
@@ -824,8 +825,8 @@
        for use with digital servos
        dont use it with analog servos! thay may get damage. (some will work but be careful) */
     //#define SERVO_RFR_300HZ
-    
-  /***********************             HW PWM Servos             ***********************/ 
+
+  /***********************             HW PWM Servos             ***********************/
     /* HW PWM Gimbal for Arduino Mega.. moves:
       Pitch = pin 44
       Roll  = pin 45
